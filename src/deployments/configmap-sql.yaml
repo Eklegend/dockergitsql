@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: configmap-sql
-  namespace: namesqlapp
+  namespace: namesqlapp2
 data:
-  DB_HOST: "my-mysql.default" # we are telling the service to find the the sql host in the default namespace. 
-  DB_NAME: "my_database"
+  DB_HOST: "helmsql-mysql.default" # we are telling the service to find the the sql host in the default namespace. 
+  DB_NAME: "ek_database"

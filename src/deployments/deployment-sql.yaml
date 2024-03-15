@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-sqlapp
-  namespace: namesqlapp
+  name: my-sqlapp2
+  namespace: namesqlapp2
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: my-sqlapp
+      app: my-sqlapp2
   template:
     metadata:
       labels:
-        app: my-sqlapp
+        app: my-sqlapp2
     spec:
       nodeSelector:
         kubernetes.io/arch: "arm64"
       containers:
       - name: newsqlcontainer
-        image: ekhari/sqltest1:latest
+        image: ekhari/dockergitsql:latest
         ports:
         - containerPort: 3000
         envFrom:

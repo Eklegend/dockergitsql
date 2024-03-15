@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sqlapp-service # we create this service and call this service since for ingress, we need a service
-  namespace: namesqlapp
+  name: sqlapp-service2 # we create this service and call this service since for ingress, we need a service
+  namespace: namesqlapp2
 spec:
   selector:
-    app: my-sqlapp  # This should match the label of your pods
+    app: my-sqlapp2  # This should match the label of your pods
   ports:
     - protocol: TCP
       port: 80
