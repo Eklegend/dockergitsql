@@ -9,6 +9,10 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: macos-latest
     steps:
+      - run: |
+          brew install docker 
+          colima start 
+          docker-compose up -d
       
       - name: Check out the repo 
         uses: actions/checkout@v3
