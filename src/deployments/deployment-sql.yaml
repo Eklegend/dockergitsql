@@ -16,7 +16,7 @@ spec:
       nodeSelector:
         kubernetes.io/arch: "arm64"
       containers:
-      - name: newsqlcontainer
+      - name: newsqlcontainer2
         image: ekhari/dockergitsql:latest
         ports:
         - containerPort: 3000
