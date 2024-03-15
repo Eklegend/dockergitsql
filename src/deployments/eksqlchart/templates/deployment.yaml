@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "eksqlchart.fullname" . }}-my-sqlapp2
+  labels:
+  {{- include "eksqlchart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.mySqlapp2.replicas }}
+  selector:
+    matchLabels:
+      app: my-sqlapp2
+    {{- include "eksqlchart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: my-sqlapp2
+      {{- include "eksqlchart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        envFrom:
+        - configMapRef:
+            name: configmap-sql
+        - secretRef:
+            name: secrets-sql
+        image: {{ .Values.mySqlapp2.newsqlcontainer2.image.repository }}:{{ .Values.mySqlapp2.newsqlcontainer2.image.tag
+          | default .Chart.AppVersion }}
+        name: newsqlcontainer2
+        ports:
+        - containerPort: 3000
+        resources: {}
+      nodeSelector: {{- toYaml .Values.mySqlapp2.nodeSelector | nindent 8 }}

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "eksqlchart.fullname" . }}-mysql-ingress2
+  labels:
+  {{- include "eksqlchart.labels" . | nindent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sample-app.cluster-test.salesconnection.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: sqlapp-service2
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
