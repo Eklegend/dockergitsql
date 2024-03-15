@@ -7,12 +7,12 @@ on:
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - run: |
           brew install docker 
           colima start 
-          docker-compose up -d
+          docker run -p 3306:3000
       
       - name: Check out the repo 
         uses: actions/checkout@v3
