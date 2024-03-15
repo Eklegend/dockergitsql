@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-sqlapp
+  namespace: namesqlapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-sqlapp
+  template:
+    metadata:
+      labels:
+        app: my-sqlapp
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: "arm64"
+      containers:
+      - name: newsqlcontainer
+        image: ekhari/sqltest1:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+          - configMapRef:
+              name: configmap-sql 
+ # since we are using the env variables to direct it with the values in the  ConfigMaps, 
+#no need for a prefix here. We can directly call the metadata.name of the config map here. 
+# Same goes to secret            
+          - secretRef:
+              name: secrets-sql

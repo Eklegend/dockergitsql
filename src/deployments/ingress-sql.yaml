@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mysql-ingress
+  namespace: namesqlapp
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sample-app.cluster-test.salesconnection.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sqlapp-service # since ingress needs namespace, we are calling the service for ingress
+            port:
+              number: 80
+              # This the the part where we are getting the data from. 
