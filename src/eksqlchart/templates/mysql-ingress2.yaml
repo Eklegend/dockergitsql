@@ -1,9 +1,9 @@
+# templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "eksqlchart.fullname" . }}-mysql-ingress2
-  labels:
-  {{- include "eksqlchart.labels" . | nindent 4 }}
+  name: mysql-ingress2
+  namespace: {{ .Release.Namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -12,10 +12,10 @@ spec:
   - host: sample-app.cluster-test.salesconnection.com
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
-            name: sqlapp-service2
+            name: {{ include "eksqlchart.fullname" . }}
             port:
               number: 80
-        path: /
-        pathType: Prefix

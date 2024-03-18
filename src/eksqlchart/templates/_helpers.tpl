@@ -60,3 +60,17 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the ConfigMap
+*/}}
+{{- define "eksqlchart.configMapName" -}}
+{{- default (include "eksqlchart.fullname" .) "configmap-sql" }}
+{{- end }}
+
+{{/*
+Create the name of the Secret
+*/}}
+{{- define "eksqlchart.secretName" -}}
+{{- default (include "eksqlchart.fullname" .) "secrets-sql" }}
+{{- end }}
