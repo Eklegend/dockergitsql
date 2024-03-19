@@ -20,13 +20,15 @@ jobs:
 
       - name: Configure Git
         run: |
-            git config user.name "${{ secrets.GIT_USER_NAME }}"
-            git config user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
         uses: azure/setup-helm@v3
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
+        with:
+            flags: --skip-existing
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
