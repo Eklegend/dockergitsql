@@ -29,7 +29,6 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
-            flags: --skip-existing
             args: upload --version "$(date +'%Y%m%d%H%M%S')"
     
         env:
