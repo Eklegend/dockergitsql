@@ -21,4 +21,4 @@ persistentVolume:
   size: 1Gi
   mountPath: /ebs 
   accessMode: ReadWriteOnce
-  path: "/ebs"
+  path: /ebs
