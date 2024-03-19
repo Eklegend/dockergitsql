@@ -17,7 +17,7 @@ sqlappService2:
     targetPort: 3000
   type: ClusterIP
 persistentVolume:
-  enabled: True
+  enabled: true
   size: 1Gi
   mountPath: /ebs 
   accessMode: ReadWriteOnce
