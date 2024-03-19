@@ -24,3 +24,6 @@ spec:
               name: configmap-sql
           - secretRef:
               name: secrets-sql
+        volumeMounts:
+          - name: data-volume
+            mounthPath: /ebs
