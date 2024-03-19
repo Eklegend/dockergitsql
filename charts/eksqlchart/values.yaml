@@ -22,3 +22,4 @@ persistentVolume:
   mountPath: /ebs 
   accessMode: ReadWriteOnce
   path: /ebs
+  storageClassName: gp2

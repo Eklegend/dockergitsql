@@ -25,5 +25,9 @@ spec:
           - secretRef:
               name: secrets-sql
         volumeMounts:
-          - name: data-volume-pv
+          - name: data-volume-pvc
             mountPath: /ebs
+      volumes:
+        - name: data-volume-pvc
+          persistentVolumeClaim:
+            claimName: data-volume-pvc
