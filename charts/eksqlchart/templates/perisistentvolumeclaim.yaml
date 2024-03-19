@@ -1,8 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: data-volume-pvc
+  name: data-pvc
 spec:
+  storageClassName: ""
+  volumeName: data-pv
   accessModes:
     - {{ .Values.persistentVolume.accessMode }}
   resources:
