@@ -3,11 +3,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mysql-ingress2
-  namespace: {{ .Release.Namespace }}
+  # namespace: {{ .Release.Namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts: 
+      - sample-app.cluster-test.salesconnection.com
+      secretName: new-tls
   rules:
   - host: sample-app.cluster-test.salesconnection.com
     http:
